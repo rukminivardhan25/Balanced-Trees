@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AVL Visualizer</title>
+  <link rel="stylesheet" href="src/style.css" />
+</head>
+<body>
+  <div class="overlay">
+    <header>
+      <h1>AVL Tree — Visualization</h1>
+      <p class="subtitle">Insert or delete values to see the AVL tree structure.</p>
+    </header>
+
+    <main>
+      <section class="viz-layout">
+        <!-- Left: SVG canvas -->
+        <div class="viz-card">
+          <svg id="avl-canvas" class="viz-canvas" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet">
+            <!-- Drawn by JavaScript -->
+          </svg>
+        </div>
+
+        <!-- Right: controls -->
+        <aside class="controls-card">
+          <h3>Controls</h3>
+          <div class="row">
+            <input id="avl-input" type="number" placeholder="Value (e.g., 15)" />
+          </div>
+          <div class="row">
+            <button id="avl-insert">Insert</button>
+            <button id="avl-delete">Delete</button>
+            <button id="avl-reset" class="secondary">Reset</button>
+          </div>
+          <div class="row small">
+            <p><strong>Status:</strong> <span id="avl-status">Ready</span></p>
+          </div>
+        </aside>
+      </section>
+
+      <div class="button-container">
+        <a class="btn" href="avl.html">⬅ Back to AVL Theory</a>
+        <a class="btn" href="index.html">Home</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="visualizer-helpers.js"></script>
+  <script src="avl-visualizer.js"></script>
+</body>
+</html>

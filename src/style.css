@@ -1,0 +1,341 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #a8edea, #fed6e3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.overlay {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 1000px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+}
+
+header .subtitle {
+  font-size: 1.2rem;
+  color: #444;
+  margin-top: 8px;
+}
+
+main {
+  margin-top: 20px;
+}
+
+.intro {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.intro h2 {
+  font-size: 1.8rem;
+  color: #2e8b57;
+  margin-bottom: 10px;
+}
+
+.intro p {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.intro ul {
+  list-style: none;
+}
+
+.intro li {
+  margin: 5px 0;
+  color: #444;
+  font-weight: 500;
+}
+
+.navigation h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  color: #6a0572;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 200px;
+  padding: 25px;
+  text-align: center;
+  border-radius: 15px;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-7px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.avl-card {
+  border: 2px solid #4db6ac;
+}
+
+.rbt-card {
+  border: 2px solid #ba68c8;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 30px;
+}
+.code-section {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 900px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.code-block {
+  background: #1e1e2e;
+  color: #e5e5e5;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #5ee7df, #b490ca);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+.viz-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+.viz-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+}
+
+.viz-canvas {
+  width: 100%;
+  height: 440px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 8px;
+}
+
+.controls-card {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+}
+
+.controls-card h3 {
+  margin-bottom: 10px;
+  color: #2e8b57;
+}
+
+.controls-card .row {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+  align-items: center;
+}
+
+.controls-card input[type="number"] {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d0d7de;
+  background: #fff;
+}
+
+.controls-card button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #5ee7df, #b490ca);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.controls-card button.secondary {
+  background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
+}
+
+.controls-card button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+}
+
+.controls-card input[type="range"] {
+  width: 100%;
+}
+
+.controls-card .small {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.legend {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 8px 2px 0;
+  color: #2c3e50;
+}
+
+.dot, .chip {
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.dot {
+  width: 12px; height: 12px; border-radius: 50%;
+}
+
+.dot-red { background: #d7263d; }
+.dot-black { background: #2A2D34; }
+
+.chip {
+  width: 14px; height: 14px; border-radius: 4px; background: #cfe9dc; border: 1px solid #9bd1be;
+}
+.chip-ok   { background: #cfe9dc; border-color: #8bc9b0; }
+.chip-warn { background: #ffe0b2; border-color: #ffc107; }
+.chip-focus{ background: #e3defa; border-color: #b39ddb; }
+ 
+@media (max-width: 900px) {
+  .viz-layout {
+    grid-template-columns: 1fr;
+  }
+}
+.code-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 4px 12px;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.code-grid::-webkit-scrollbar {
+  height: 8px;
+}
+.code-grid::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+}
+.code-grid::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}
+
+.code-section {
+  flex: 0 0 520px;
+  max-width: 640px;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 1200px) {
+  .code-section {
+    flex: 1 0 0;
+    max-width: none;
+  }
+}
+
+.code-block {
+  background: #1e1e2e;
+  color: #e5e5e5;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow: auto;
+  white-space: pre;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 16px;
+}
+.card-1{
+  margin-bottom:12px;
+  width:50vw;
+}
+.classification {
+  display: flex;
+  flex-direction: column;   /* stack cards vertically */
+  align-items: center;      /* center them horizontally */
+  gap: 20px;                /* space between cards */
+  margin-top: 20px;
+}
+.text-center-1{
+  text-align: center;
+  margin-top:10px;
+}

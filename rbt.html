@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Red-Black Tree Visualizer</title>
+  <link rel="stylesheet" href="src/style.css" />
+</head>
+<body>
+  <!-- Glass overlay wrapper -->
+  <div class="overlay">
+    <!-- Header -->
+    <header>
+      <h1>Red-Black Tree Visualizer</h1>
+      <p class="subtitle">Learn how Red-Black Trees maintain balance with recoloring and rotations.</p>
+    </header>
+
+    <main>
+      <!-- Intro -->
+      <section class="intro">
+        <h2>What is a Red-Black Tree?</h2>
+        <p>
+          A <strong>Red-Black Tree</strong> is a self-balancing Binary Search Tree that keeps operations near
+          <code>O(log n)</code> by enforcing color properties and applying rotations. It guarantees:
+        </p>
+        <ul>
+          <li>Every node is either <strong>red</strong> or <strong>black</strong>.</li>
+          <li>The root is always <strong>black</strong>.</li>
+          <li>No red node has a red child (no red-red edge).</li>
+          <li>Every path from a node to its descendant NIL leaves has the same count of black nodes (equal <em>black height</em>).</li>
+        </ul>
+      </section>
+
+      <!-- Two-column code layout (slides horizontally on small screens) -->
+      <section class="code-grid">
+        <!-- Insertion -->
+        <div class="code-section">
+          <h2>Red-Black Tree Insertion</h2>
+          <pre class="code-block">
+function insert(root, key):
+  # 1) Standard BST insert
+  node = bstInsert(root, key)
+  if node is null: return root
+  node.color = RED
+
+  # 2) Fix red-red violation up the tree
+  while node != root and node.parent.color == RED:
+    if node.parent == node.parent.parent.left:
+      uncle = node.parent.parent.right
+
+      if uncle != null and uncle.color == RED:
+        # Case 1: Recolor and move up
+        node.parent.color = BLACK
+        uncle.color = BLACK
+        node.parent.parent.color = RED
+        node = node.parent.parent
+      else:
+        if node == node.parent.right:
+          # Case 2: Left rotate parent
+          node = node.parent
+          leftRotate(node)
+        # Case 3: Right rotate grandparent
+        node.parent.color = BLACK
+        node.parent.parent.color = RED
+        rightRotate(node.parent.parent)
+    else:
+      # Mirror cases (parent is right child)
+      uncle = node.parent.parent.left
+
+      if uncle != null and uncle.color == RED:
+        node.parent.color = BLACK
+        uncle.color = BLACK
+        node.parent.parent.color = RED
+        node = node.parent.parent
+      else:
+        if node == node.parent.left:
+          node = node.parent
+          rightRotate(node)
+        node.parent.color = BLACK
+        node.parent.parent.color = RED
+        leftRotate(node.parent.parent)
+
+  root.color = BLACK
+  return root
+          </pre>
+        </div>
+
+        <!-- Deletion -->
+        <div class="code-section">
+          <h2>Red-Black Tree Deletion</h2>
+          <pre class="code-block">
+function delete(root, key):
+  # 1) Standard BST delete (remove node or replace by successor)
+  z = find(root, key)
+  if z == null: return root
+
+  y = z
+  yOriginalColor = y.color
+
+  if z.left == null:
+    x = z.right
+    transplant(root, z, z.right)
+  else if z.right == null:
+    x = z.left
+    transplant(root, z, z.left)
+  else:
+    y = minimum(z.right)                # successor
+    yOriginalColor = y.color
+    x = y.right
+    if y.parent == z:
+      if x != null: x.parent = y
+    else:
+      transplant(root, y, y.right)
+      y.right = z.right
+      y.right.parent = y
+    transplant(root, z, y)
+    y.left = z.left
+    y.left.parent = y
+    y.color = z.color
+
+  # 2) Fix double-black if a BLACK node was removed
+  if yOriginalColor == BLACK:
+    deleteFixup(root, x)
+
+  return root
+
+function deleteFixup(root, x):
+  while x != root and (x == null or x.color == BLACK):
+    if x == x.parent.left:
+      w = x.parent.right   # sibling
+      if w.color == RED:
+        w.color = BLACK
+        x.parent.color = RED
+        leftRotate(x.parent)
+        w = x.parent.right
+      if (w.left == null or w.left.color == BLACK) and (w.right == null or w.right.color == BLACK):
+        w.color = RED
+        x = x.parent
+      else:
+        if w.right == null or w.right.color == BLACK:
+          if w.left != null: w.left.color = BLACK
+          w.color = RED
+          rightRotate(w)
+          w = x.parent.right
+        w.color = x.parent.color
+        x.parent.color = BLACK
+        if w.right != null: w.right.color = BLACK
+        leftRotate(x.parent)
+        x = root
+    else:
+      # mirror (x is right child)
+      w = x.parent.left
+      if w.color == RED:
+        w.color = BLACK
+        x.parent.color = RED
+        rightRotate(x.parent)
+        w = x.parent.left
+      if (w.left == null or w.left.color == BLACK) and (w.right == null or w.right.color == BLACK):
+        w.color = RED
+        x = x.parent
+      else:
+        if w.left == null or w.left.color == BLACK:
+          if w.right != null: w.right.color = BLACK
+          w.color = RED
+          leftRotate(w)
+          w = x.parent.left
+        w.color = x.parent.color
+        x.parent.color = BLACK
+        if w.left != null: w.left.color = BLACK
+        rightRotate(x.parent)
+        x = root
+  if x != null: x.color = BLACK
+          </pre>
+        </div>
+      </section>
+
+      <!-- Navigation buttons -->
+      <div class="button-container">
+        <a href="index.html" class="btn">⬅ Back to Home</a>
+        <a href="rbt-visualizer.html" class="btn">Go to Visualization ➡</a>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

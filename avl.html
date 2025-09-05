@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AVL Tree Visualizer</title>
+  <link rel="stylesheet" href="src/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Glass overlay wrapper -->
+  <div class="overlay">
+    <!-- Header -->
+    <header>
+      <h1>AVL Tree Visualizer</h1>
+      <p class="subtitle">Learn how AVL Trees maintain balance during insertions and deletions.</p>
+    </header>
+
+    <main>
+      
+      <!-- Intro -->
+      <section class="intro">
+        <h2>What is an AVL Tree?</h2>
+        <p>
+          An <strong>AVL Tree</strong> is a self-balancing Binary Search Tree where the height difference
+          (balance factor) between a node’s left and right subtrees is at most <strong>1</strong>.
+         <br/> It maintains this by performing rotations after insertions and deletions.
+        </p>
+      </section>
+
+      <!-- Two-column code layout (slides horizontally on small screens) -->
+      <section class="code-grid">
+        <!-- Insertion -->
+        <div class="code-section">
+          <h2>AVL Tree Insertion</h2>
+          <pre class="code-block">
+function insert(node, key):
+  if node is null:
+    return new Node(key)
+
+  if key &lt; node.key:
+    node.left = insert(node.left, key)
+  else if key &gt; node.key:
+    node.right = insert(node.right, key)
+  else:
+    return node  # no duplicates
+
+  updateHeight(node)
+  balance = getBalance(node)
+
+  # Left Left
+  if balance &gt; 1 and key &lt; node.left.key:
+    return rightRotate(node)
+
+  # Right Right
+  if balance &lt; -1 and key &gt; node.right.key:
+    return leftRotate(node)
+
+  # Left Right
+  if balance &gt; 1 and key &gt; node.left.key:
+    node.left = leftRotate(node.left)
+    return rightRotate(node)
+
+  # Right Left
+  if balance &lt; -1 and key &lt; node.right.key:
+    node.right = rightRotate(node.right)
+    return leftRotate(node)
+
+  return node
+          </pre>
+        </div>
+
+        <!-- Deletion -->
+        <div class="code-section">
+          <h2>AVL Tree Deletion</h2>
+          <pre class="code-block">
+function delete(node, key):
+  if node is null:
+    return null
+
+  # 1) Standard BST delete
+  if key &lt; node.key:
+    node.left = delete(node.left, key)
+  else if key &gt; node.key:
+    node.right = delete(node.right, key)
+  else:
+    # node with one child or no child
+    if node.left is null or node.right is null:
+      temp = node.left ? node.left : node.right
+      if temp is null:
+        node = null
+      else:
+        node = temp
+    else:
+      # two children: inorder successor from right subtree
+      succ = minValueNode(node.right)
+      node.key = succ.key
+      node.right = delete(node.right, succ.key)
+
+  if node is null:
+    return node
+
+  # 2) Update height
+  node.height = 1 + max(height(node.left), height(node.right))
+
+  # 3) Rebalance
+  balance = getBalance(node)
+
+  # Left Left
+  if balance &gt; 1 and getBalance(node.left) &gt;= 0:
+    return rightRotate(node)
+
+  # Left Right
+  if balance &gt; 1 and getBalance(node.left) &lt; 0:
+    node.left = leftRotate(node.left)
+    return rightRotate(node)
+
+  # Right Right
+  if balance &lt; -1 and getBalance(node.right) &lt;= 0:
+    return leftRotate(node)
+
+  # Right Left
+  if balance &lt; -1 and getBalance(node.right) &gt; 0:
+    node.right = rightRotate(node.right)
+    return leftRotate(node)
+
+  return node
+
+function minValueNode(n):
+  cur = n
+  while cur.left != null:
+    cur = cur.left
+  return cur
+          </pre>
+        </div>
+      </section>
+
+      <!-- Navigation buttons -->
+      <div class="button-container">
+        <a href="index.html" class="btn">⬅ Back to Home</a>
+        <a href="avl-visualizer.html" class="btn">Go to Visualization ➡</a>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
+

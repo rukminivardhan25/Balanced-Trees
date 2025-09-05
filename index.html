@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Balanced Tree Visualizer</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div class="overlay">
+    <header>
+      <!-- First heading kept the same as requested -->
+      <h1>🌳 Balanced Tree Visualizer</h1>
+      <p class="subtitle">Interactive visulas of AVL & Red-Black Trees</p>
+    </header>
+
+    <main>
+      <section class="intro">
+        <h2>Why Balanced Trees?</h2>
+        <p>
+          Balanced trees are fundamental for keeping tree-based operations (search, insert, delete)
+          fast and predictable. Below are concise concepts you should know:
+        </p>
+        <ul class="concepts">
+          <li><strong>Height control:</strong> Balanced trees keep the height proportional to log(n), which bounds operation time.</li>
+          <li><strong>Rotations & adjustments:</strong> Rebalancing is done using rotations and color/height fixes so structure remains efficient.</li>
+          <li><strong>Guaranteed performance:</strong> Worst-case time complexities are guaranteed (unlike plain binary search trees).</li>
+          <li><strong>Use cases:</strong> Memory indexes, language runtimes, ordered maps and sets, databases, and file systems.</li>
+          
+        </ul>
+
+        <p class="classification-heading"><strong>Balanced trees are commonly classified into two families:</strong></p>
+<div class="classification">
+  <article class="card-1 card small ">
+    <h3>1. AVL Trees</h3>
+    <p>An AVL tree keeps both sides of the tree nearly the same height (absolute difference is at most 1). <br/>It uses simple rotations to fix the shape after adding or removing nodes.</p>
+  </article>
+
+  <article class="card-1 card small">
+    <h3>2. Red-Black Trees</h3>
+    <p>A Red-Black tree colors each node red or black. <br/>The colors help keep the tree fairly balanced, making sure operations stay fast without too many adjustments.</p>
+  </article>
+</div>
+
+       
+        
+      </section>
+
+      <section class="navigation">
+        <h2>Choose a Visualizer</h2>
+        <div class="cards">
+          <a href="avl.html" class="card avl-card">
+            <h3>AVL Tree</h3>
+            
+          </a>
+          <a href="rbt.html" class="card rbt-card">
+            <h3>Red-Black Tree</h3>
+            
+          </a>
+        </div>
+
+        <div class="controls-note">
+          <p class="text-center-1">Tip: Open a visualizer and try sequences of inserts and deletes</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Balanced Tree Visualizer</p>
+    </footer>
+  </div>
+</body>
+</html>

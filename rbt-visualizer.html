@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Red-Black Tree Visualizer</title>
+  <link rel="stylesheet" href="src/style.css" />
+</head>
+<body>
+  <div class="overlay">
+    <header>
+      <h1>Red-Black Tree Visualizer</h1>
+      <p class="subtitle">Insert or delete values to see the Red-Black Tree structure.</p>
+    </header>
+
+    <main>
+      <section class="viz-layout">
+        <div class="viz-card">
+          <svg id="rbt-canvas" class="viz-canvas" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet">
+            <!-- Drawn by JavaScript -->
+          </svg>
+        </div>
+
+        <aside class="controls-card">
+          <h3>Controls</h3>
+          <div class="row">
+            <input id="rbt-input" type="number" placeholder="Value (e.g., 15)" />
+          </div>
+          <div class="row">
+            <button id="rbt-insert">Insert</button>
+            <button id="rbt-delete">Delete</button>
+            <button id="rbt-reset" class="secondary">Reset</button>
+          </div>
+          <div class="row small">
+            <p><strong>Status:</strong> <span id="rbt-status">Ready</span></p>
+          </div>
+        </aside>
+      </section>
+
+      <div class="button-container">
+       
+        <a href="rbt.html" class="btn">⬅ Back to RBT Theory</a>
+        <a href="index.html" class="btn">Home</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="visualizer-helpers.js"></script>
+  <script src="rbt-visualizer.js"></script>
+</body>
+</html>
